@@ -1,0 +1,398 @@
+\section{Resumen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Marco teórico}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Procedimiento}
+
+El desarrollo de la práctica se estructuró de manera secuencial en tres etapas: dimensionamiento analítico de parámetros, validación computacional mediante simulación circuital en régimen permanente y definición del protocolo de montaje experimental con técnicas de medición segura.
+
+\subsection{Dimensionamiento analítico y criterios de selección}
+
+A partir de los datos nominales del transformador reductor dispuesto por nosotros cuyo valor es $115\,\mathrm{V_{AC}} / 60\,\mathrm{Hz}$ en primario, devanado secundario con toma central de $9\,\mathrm{V} - 0 - 9\,\mathrm{V}$ a $600\,\mathrm{mA}$ nominales y considerando la caída de tensión directa típica en los diodos de silicio 1N4004 ($V_D \approx 0.7\,\mathrm{V}$), se efectuó el desarrollo analítico paso a paso para cada una de las topologías.
+
+\subsubsection{Criterio de selección de carga y capacidad térmica}
+Para operar holgadamente por debajo del límite de $600\,\mathrm{mA}$ del transformador y preservar los componentes, se seleccionó como valor base: \textbf{$R = 220\,\Omega$}.
+La peor condición de potencia ocurre en la topología de puente completo con $V_{s-rms} = 18\,\mathrm{V_{rms}}$. La tensión pico del devanado completo es:
+\begin{equation}
+    V_m = 18\sqrt{2} \approx 25.46\,\mathrm{V}
+\end{equation}
+Conduciendo dos diodos simultáneamente, la tensión pico y eficaz en la carga son:
+\begin{align}
+    V_{o-pico} &= V_m - 2V_D = 25.46\,\mathrm{V} - 1.40\,\mathrm{V} = 24.06\,\mathrm{V} \\
+    V_{o-rms} &= \frac{V_{o-pico}}{\sqrt{2}} = \frac{24.06\,\mathrm{V}}{\sqrt{2}} \approx 17.01\,\mathrm{V}
+\end{align}
+Por tanto, la potencia continua disipada en régimen resistivo puro es:
+\begin{equation}
+    P = \frac{V_{o-rms}^2}{R} = \frac{(17.01\,\mathrm{V})^2}{220\,\Omega} \approx 1.315\,\mathrm{W}
+\end{equation}
+Dado que una resistencia comercial de carbón de $0.25\,\mathrm{W}$ o $0.5\,\mathrm{W}$ fallaría por fatiga térmica, se determinó el uso obligatorio de un reóstato de laboratorio ajustado a $220\,\Omega$ (capacidad $\ge 25\,\mathrm{W}$) o un resistor cerámico de $5\,\mathrm{W}$.
+
+\subsubsection{Cálculos para cada topología: Primera parte}
+
+\paragraph{A. Topología 1: Rectificador de Media Onda}
+
+\begin{figure}[H]
+\centering
+\renewcommand{\etqFuente}{v_s(t)\ (9\,\mathrm{V_{rms}})}
+\renewcommand{\etqCarga}{R\,(220\,\Omega)}
+\input{sub_files/circuitos/c1-media-onda}
+\caption{Circuito 1: Rectificador de media onda con filtro capacitivo opcional.}
+\label{fig:media_onda}
+\end{figure}
+
+Se conecta un único devanado ($V_{s-rms} = 9\,\mathrm{V_{rms}}$). La amplitud senoidal pico es:
+\begin{equation}
+    V_m = 9\sqrt{2} \approx 12.73\,\mathrm{V}
+\end{equation}
+\begin{itemize}
+    \item \textbf{Tensión pico en la carga:}
+    \begin{equation}
+        V_{o-pico} = V_m - V_D = 12.73\,\mathrm{V} - 0.70\,\mathrm{V} = \mathbf{12.03\,\mathrm{V}}
+    \end{equation}
+    \item \textbf{Tensión media continua ($V_{o-DC}$):}
+    \begin{equation}
+        V_{o-DC} = \frac{V_{o-pico}}{\pi} = \frac{12.03\,\mathrm{V}}{\pi} \approx \mathbf{3.83\,\mathrm{V}}
+    \end{equation}
+    \item \textbf{Tensión eficaz de salida ($V_{o-rms}$):}
+    \begin{equation}
+        V_{o-rms} = \frac{V_{o-pico}}{2} = \frac{12.03\,\mathrm{V}}{2} \approx \mathbf{6.02\,\mathrm{V}}
+    \end{equation}
+    \item \textbf{Potencia activa disipada ($P$):}
+    \begin{equation}
+        P = \frac{V_{o-rms}^2}{R} = \frac{(6.02\,\mathrm{V})^2}{220\,\Omega} \approx \mathbf{0.165\,\mathrm{W}}
+    \end{equation}
+    \item \textbf{Corriente eficaz y potencia aparente del secundario ($S$):}\\
+    La corriente de línea en el secundario coincide con la corriente de carga:
+    \begin{equation}
+        I_{s-rms}= \frac{V_{o-rms}}{R} = \frac{6.02V} {220\Omega} \approx 0.0274A 
+    \end{equation}
+    \begin{equation}
+    S = V_{s-rms} \cdot I_{s-rms} = 9V \cdot 0.0274A \approx \mathbf{0.247 VA}
+    \end{equation}
+    
+    \item \textbf{Factor de Potencia ($PF$):}
+    \begin{equation}
+        PF = \frac{P}{S} = \frac{0.165\,\mathrm{W}}{0.247\,\mathrm{VA}} \approx \mathbf{0.668}
+    \end{equation}
+\end{itemize}
+
+\paragraph{B. Topología 2: Onda Completa con Tap Central}
+
+% --- FIGURA 2: TAP CENTRAL ---
+\begin{figure}[H]
+\centering
+\renewcommand{\etqFuente}{115\,\mathrm{V_{rms}}}
+\renewcommand{\etqSec}{9\,\mathrm{V_{rms}}}
+\renewcommand{\etqCarga}{R\,(220\,\Omega)}
+\resizebox{0.95\columnwidth}{!}{\input{sub_files/circuitos/c2-tab-central}}
+\caption{Circuito 2: Rectificador de onda completa con transformador de tap central.}
+\label{fig:tap_central}
+\end{figure}
+
+Cada mitad del devanado entrega $V_{dev-rms} = 9\,\mathrm{V_{rms}}$ es decir, $V_{m,\mathrm{tap}} = 12.73\,\mathrm{V}$, conduciendo un solo diodo por semiciclo respecto a la derivación central común.
+\begin{itemize}
+    \item \textbf{Tensión pico en la carga:}
+    \begin{equation}
+        V_{o-pico} = V_{m,\mathrm{tap}} - V_D = 12.73\,\mathrm{V} - 0.70\,\mathrm{V} = \mathbf{12.03\,\mathrm{V}}
+    \end{equation}
+    \item \textbf{Tensión media continua ($V_{o-DC}$):}
+    \begin{equation}
+        V_{o-DC} = \frac{2 \cdot V_{o-pico}}{\pi} = \frac{2 \cdot 12.03\,\mathrm{V}}{\pi} \approx \mathbf{7.66\,\mathrm{V}}
+    \end{equation}
+    \item \textbf{Tensión eficaz de salida ($V_{o-rms}$):}
+    \begin{equation}
+        V_{o-rms} = \frac{V_{o-pico}}{\sqrt{2}} = \frac{12.03\,\mathrm{V}}{\sqrt{2}} \approx \mathbf{8.51\,\mathrm{V}}
+    \end{equation}
+    \item \textbf{Potencia activa disipada ($P$):}
+    \begin{equation}
+        P = \frac{V_{o-rms}^2}{R} = \frac{(8.51\,\mathrm{V})^2}{220\,\Omega} \approx \mathbf{0.329\,\mathrm{W}}
+    \end{equation}
+    \item \textbf{Potencia aparente total del secundario ($S$):}\\
+    Cada mitad del bobinado conduce únicamente durante un semiciclo, operando con una corriente eficaz por devanado de:
+    \begin{equation}
+        I_{dev-rms} = \frac{V_{o-pico}}{2R} = \frac{12.03\,\mathrm{V}}{2 \cdot 220\,\Omega} \approx 0.0274\,\mathrm{A}
+    \end{equation}
+    Sumando la potencia aparente aportada por ambas ramas secundarias:
+    \begin{equation}
+        S = 2 \cdot (V_{dev-rms} \cdot I_{dev-rms}) = 2 \cdot (9\,\mathrm{V} \cdot 0.0274\,\mathrm{A}) \approx \mathbf{0.493\,\mathrm{VA}}
+    \end{equation}
+    \item \textbf{Factor de Potencia ($PF$):}
+    \begin{equation}
+        PF = \frac{P}{S} = \frac{0.329\,\mathrm{W}}{0.493\,\mathrm{VA}} \approx \mathbf{0.667}
+    \end{equation}
+\end{itemize}
+
+\paragraph{C. Topología 3: Puente Completo}
+
+\begin{figure}[H]
+  \centering
+  \renewcommand{\etqFuente}{v_s\ (18\,\mathrm{V_{rms}})}
+  \renewcommand{\etqCarga}{R\,(220\,\Omega)}
+  \resizebox{0.8\columnwidth}{!}{\input{sub_files/circuitos/c3-puente}}
+  \caption{Esquema del rectificador en puente con transformador y carga.}
+  \label{fig:puente_rectificador}
+\end{figure}
+
+Se alimenta con los extremos totales del secundario ($V_{s-rms} = 18\,\mathrm{V_{rms}}$, $V_m = 25.46\,\mathrm{V}$), conduciendo dos diodos simultáneos por semiciclo ($2V_D = 1.40\,\mathrm{V}$).
+\begin{itemize}
+    \item \textbf{Tensión pico en la carga:}
+    \begin{equation}
+        V_{o-pico} = V_m - 2V_D = 25.46\,\mathrm{V} - 1.40\,\mathrm{V} = \mathbf{24.06\,\mathrm{V}}
+    \end{equation}
+    \item \textbf{Tensión media continua ($V_{o-DC}$):}
+    \begin{equation}
+        V_{o-DC} = \frac{2 \cdot V_{o-pico}}{\pi} = \frac{2 \cdot 24.06\,\mathrm{V}}{\pi} \approx \mathbf{15.32\,\mathrm{V}}
+    \end{equation}
+    \item \textbf{Tensión eficaz de salida ($V_{o-rms}$):}
+    \begin{equation}
+        V_{o-rms} = \frac{V_{o-pico}}{\sqrt{2}} = \frac{24.06\,\mathrm{V}}{\sqrt{2}} \approx \mathbf{17.01\,\mathrm{V}}
+    \end{equation}
+    \item \textbf{Potencia activa disipada ($P$):}
+    \begin{equation}
+        P = \frac{V_{o-rms}^2}{R} = \frac{(17.01\,\mathrm{V})^2}{220\,\Omega} \approx \mathbf{1.315\,\mathrm{W}}
+    \end{equation}
+    \item \textbf{Potencia aparente del secundario ($S$):}\\
+    La corriente en el secundario es alternante completa simétrica:
+    \begin{align}
+        I_{s-rms} &= \frac{V_{o-rms}}{R} = \frac{17.01\,\mathrm{V}}{220\,\Omega} \approx 0.0773\,\mathrm{A} \\
+        S &= V_{s-rms} \cdot I_{s-rms} = 18\,\mathrm{V} \cdot 0.0773\,\mathrm{A} \approx \mathbf{1.391\,\mathrm{VA}}
+    \end{align}
+    \item \textbf{Factor de Potencia ($PF$):}
+    \begin{equation}
+        PF = \frac{P}{S} = \frac{1.315\,\mathrm{W}}{1.391\,\mathrm{VA}} \approx \mathbf{0.945}
+    \end{equation}
+\end{itemize}
+
+\subsubsection{Cálculos para cada topologia: Segunda parte}
+
+En esta parte, se coloca un capacitor en paralelo a la carga en cada topologia. El comportamiento del filtro $RC$ paralelo se modela asumiendo una descarga lineal del condensador a través de la resistencia entre picos de conducción. La tensión de rizo pico a pico resultante es:
+\begin{equation}
+    \Delta V_o \approx \frac{V_{o-pico}}{f_{\mathrm{rizo}} \cdot R \cdot C}
+\end{equation}
+Aproximando la oscilación de alterna a una forma de onda triangular ($V_{ac-rms} \approx \frac{\Delta V_o}{2\sqrt{3}}$), el Factor de Rizo ($FR$) analítico formal viene dado por:
+\begin{equation}
+    FR = \frac{V_{ac-rms}}{V_{o-DC}} \approx \frac{1}{2\sqrt{3} \cdot f_{\mathrm{rizo}} \cdot R \cdot C}
+\end{equation}
+Despejando la capacitancia necesaria para un requerimiento de rizado específico:
+\begin{equation}
+    C \ge \frac{1}{2\sqrt{3} \cdot f_{\mathrm{rizo}} \cdot R \cdot FR}
+    \label{eq:despeje_C}
+\end{equation}
+
+\paragraph{A. Filtro para Rectificador de Media Onda ($f_{\mathrm{rizo}} = 60\,\mathrm{Hz}$):}
+\begin{enumerate}
+    \item \textbf{Condición de bajo rizo ($FR \le 10\% = 0.10$):}
+    \begin{equation}
+        C \ge \frac{1}{2\sqrt{3} \cdot 60\,\mathrm{Hz} \cdot 220\,\Omega \cdot 0.10} = \frac{1}{4572.6} \approx 218.7\,\mu\mathrm{F}
+    \end{equation}
+    Se adoptó el valor comercial de \textbf{$C = 220\,\mu\mathrm{F}$}. El factor de rizo real esperado es:
+    \begin{equation}
+        FR = \frac{1}{4572.6 \cdot 220 \times 10^{-6}} \approx \mathbf{9.94\%} \le 10\%
+    \end{equation}
+    \item \textbf{Condición de alto rizo ($30\% \le FR \le 50\%$, diseño a $FR = 40\% = 0.40$):}
+    \begin{equation}
+        C = \frac{1}{2\sqrt{3} \cdot 60\,\mathrm{Hz} \cdot 220\,\Omega \cdot 0.40} = \frac{1}{18290.5} \approx 54.7\,\mu\mathrm{F}
+    \end{equation}
+    Se seleccionó el valor comercial de \textbf{$C = 47\,\mu\mathrm{F}$}. El factor de rizo obtenido es:
+    \begin{equation}
+        FR = \frac{1}{4572.6 \cdot 47 \times 10^{-6}} \approx \mathbf{46.5\%} \quad (30\% \le FR \le 50\%)
+    \end{equation}
+\end{enumerate}
+
+\paragraph{B. Filtro para Onda Completa: Tap Central y Puente ($f_{\mathrm{rizo}} = 120\,\mathrm{Hz}$):}
+Al duplicarse la frecuencia de oscilación, la capacitancia requerida para igual rizado se reduce a la mitad:
+\begin{enumerate}
+    \item \textbf{Condición de bajo rizo ($FR \le 10\% = 0.10$):}
+    \begin{equation}
+        C \ge \frac{1}{2\sqrt{3} \cdot 120\,\mathrm{Hz} \cdot 220\,\Omega \cdot 0.10} = \frac{1}{9145.2} \approx 109.3\,\mu\mathrm{F}
+    \end{equation}
+    Para estandarizar componentes con la etapa de media onda, se empleó \textbf{$C = 220\,\mu\mathrm{F}$}, garantizando:
+    \begin{equation}
+        FR = \frac{1}{9145.2 \cdot 220 \times 10^{-6}} \approx \mathbf{4.97\%} < 10\%
+    \end{equation}
+    \item \textbf{Condición de alto rizo ($30\% \le FR \le 50\%$, diseño a $FR = 40\% = 0.40$):}
+    \begin{equation}
+        C = \frac{1}{2\sqrt{3} \cdot 120\,\mathrm{Hz} \cdot 220\,\Omega \cdot 0.40} = \frac{1}{36581} \approx 27.3\,\mu\mathrm{F}
+    \end{equation}
+    Se seleccionó el valor comercial estándar de \textbf{$C = 33\,\mu\mathrm{F}$}, obteniendo:
+    \begin{equation}
+        FR = \frac{1}{9145.2 \cdot 33 \times 10^{-6}} \approx \mathbf{33.1\%} \quad (30\% \le FR \le 50\%)
+    \end{equation}
+\end{enumerate}
+
+\subsection{Protocolo de Modelado y Simulación en LTspice}
+
+Las tres topologías fueron modeladas en el software LTspice mediante los siguientes criterios de configuración:
+\begin{enumerate}
+    \item \textbf{Fuentes de excitación senoidal:} Se modelaron según la tensión pico secundaria:
+    \begin{equation}
+        V_m = \sqrt{2} \cdot V_{\mathrm{rms}}
+    \end{equation}
+    asignando $V_m = 12.73\,\mathrm{V}$ ($f = 60\,\mathrm{Hz}$) para media onda y cada mitad del tap central, y $V_m = 25.46\,\mathrm{V}$ para la alimentación del puente de diodos.
+    \item \textbf{Modelo del diodo:} Se utilizó un modelo obtenido en linea .Model con las características del 1N4004, ya que este diodo no se encuentra en la librería estándar de LTspice.
+    \item \textbf{Condiciones de integración transitoria:} Se ejecutó el comando \texttt{.tran 0 100m 50m 10u}. El descarte de los primeros 50ms de cómputo garantiza la extinción del transitorio inicial de carga, registrando al menos 3 ciclos en régimen permanente estable.
+    \item \textbf{Extracción de parámetros eléctricos:} Los valores $V_{o-DC}$ y $V_{o-rms}$ se calcularon mediante integración numérica en el visor de formas de onda haciendo Ctrl + Clic sobre el rótulo de la señal. La potencia disipada se cuantificó mediante el producto instantáneo $v(t) \cdot i(t)$, y la potencia aparente mediante $S = V_{s-rms} \cdot I_{s-rms}$.
+\end{enumerate}
+
+%\subsection{Protocolo experimental en el laboratorio}
+\input{sub_files/metodologia_circuitos}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Resultados y Análisis}
+
+En esta sección se presentan de forma consolidada las magnitudes teóricas calculadas, los resultados computacionales obtenidos en LTspice y los valores experimentales medidos en el banco de trabajo, acompañados del error relativo porcentual calculado mediante:
+\begin{equation}
+    \%\,\mathrm{Error} = \frac{|\mathrm{Medido} - \mathrm{Teórico}|}{\mathrm{Teórico}} \times 100\%
+\end{equation}
+
+% ==========================================
+% TABLA 1 CONSOLIDADA: CARGA PURAMENTE RESISTIVA
+% ==========================================
+\begin{table*}[!t]
+\centering
+\small
+\caption{Consolidado de resultados para carga puramente resistiva ($R = 220\,\Omega$).}
+\label{tab:consolidado_tabla1}
+\begin{tabular}{llcccccc}
+\toprule
+\textbf{Topología} & \textbf{Origen} & $\mathbf{V_{o-rms}}\,\mathrm{[V]}$ & $\mathbf{V_{o-DC}}\,\mathrm{[V]}$ & $\mathbf{V_{o-pico}}\,\mathrm{[V]}$ & $\mathbf{P}\,\mathrm{[W]}$ & $\mathbf{S}\,\mathrm{[VA]}$ & $\mathbf{PF}$ \\
+\midrule
+% ---------------- MEDIA ONDA ----------------
+\textbf{Media onda} 
+& Teórico   & 6.02  & 3.83  & 12.03 & 0.165 & 0.247 & 0.668 \\
+& Simulado  &5.88 % <-- Escribe aquí tu dato de LTspice
+& 3.68% <-- Vo-DC LTspice
+& 11.94% <-- Vo-pico LTspice
+& 0.157% <-- P LTspice
+& 0.240% <-- S LTspice
+& 0.668% <-- PF LTspice
+\\
+& Medido    & % <-- Dato del osciloscopio en el lab
+& 
+& 
+& 
+& 
+& 
+\\
+& \% Error  & % <-- % Error
+& 
+& 
+& 
+& 
+& 
+\\
+\midrule
+% ---------------- TAP CENTRAL ----------------
+\textbf{Tap central} 
+& Teórico   & 8.51  & 7.66  & 12.03 & 0.329 & 0.493 & 0.667 \\
+& Simulado  &8.53 % <-- LTspice
+& 7.62
+& 11.91
+& 0.330
+& 0.498
+& 0.662
+\\
+& Medido    & % <-- Lab
+& 
+& 
+& 
+& 
+& 
+\\
+& \% Error  & 
+& 
+& 
+& 
+& 
+& 
+\\
+\midrule
+% ---------------- PUENTE DE DIODOS ----------------
+\textbf{Puente de diodos} 
+& Teórico   & 17.01 & 15.32 & 24.06 & 1.315 & 1.391 & 0.945 \\
+& Simulado  &16.53 % <-- LTspice
+& 14.63
+& 23.74
+& 1.23
+& 1.35
+& 0.91
+\\
+& Medido    & % <-- Lab
+& 
+& 
+& 
+& 
+& 
+\\
+& \% Error  & 
+& 
+& 
+& 
+& 
+& 
+\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% ==========================================
+% TABLA 2 CONSOLIDADA: CARGA RC CON FILTRO
+% ==========================================
+\begin{table*}[!t]
+\centering
+\small
+\caption{Consolidado de resultados para carga con filtro capacitivo ($R = 220\,\Omega$).}
+\label{tab:consolidado_tabla2}
+\begin{tabular}{lllccccc}
+\toprule
+\textbf{Topología} & $\mathbf{C_{\mathrm{filtro}}}$ & \textbf{Origen} & $\mathbf{V_{o-rms}}\,\mathrm{[V]}$ & $\mathbf{V_{o-DC}}\,\mathrm{[V]}$ & $\mathbf{V_{o-pico}}\,\mathrm{[V]}$ & $\mathbf{FR}\,[\%]$ & $\mathbf{PF}$ \\
+\midrule
+% ---------------- MEDIA ONDA (BAJO RIZO) ----------------
+\textbf{Media onda} & \multirow{4}{*}{$220\,\mu\mathrm{F}$} 
+& Teórico   & 10.0  & 9.9   & 12.0  & 9.9\% & 0.35 \\
+($FR < 10\%$) & & Simulado  &10.34 &10.3 &11.82 &9.29\% &0.38 \\
+              & & Medido    & & & & & \\
+              & & \% Error  & & & & & \\
+\cmidrule(lr){2-8}
+% ---------------- MEDIA ONDA (ALTO RIZO) ----------------
+\textbf{Media onda} & \multirow{4}{*}{$47\,\mu\mathrm{F}$} 
+& Teórico   & 6.9   & 6.4   & 12.0  & 46.5\% & 0.52 \\
+($FR > 30\%$) & & Simulado  &7.77 &7.30 &11.90 &37.12\% &0.45 \\
+              & & Medido    & & & & & \\
+              & & \% Error  & & & & & \\
+\midrule
+% ---------------- TAP CENTRAL (BAJO RIZO) ----------------
+\textbf{Tap central} & \multirow{4}{*}{$220\,\mu\mathrm{F}$} 
+& Teórico   & 11.0  & 11.0  & 12.0  & 5.0\% & 0.40 \\
+($FR < 10\%$) & & Simulado  &11.1 &11.09 &11.83 &3.99\% &0.29 \\
+              & & Medido    & & & & & \\
+              & & \% Error  & & & & & \\
+\cmidrule(lr){2-8}
+% ---------------- TAP CENTRAL (ALTO RIZO) ----------------
+\textbf{Tap central} & \multirow{4}{*}{$33\,\mu\mathrm{F}$} 
+& Teórico   & 9.6   & 9.2   & 12.0  & 33.1\% & 0.55 \\
+($FR > 30\%$) & & Simulado  &9.28 &9.07 &11.90 &23.22\% &0.33 \\
+              & & Medido    & & & & & \\
+              & & \% Error  & & & & & \\
+\midrule
+% ---------------- PUENTE (BAJO RIZO) ----------------
+\textbf{Puente} & \multirow{4}{*}{$220\,\mu\mathrm{F}$} 
+& Teórico   & 22.0  & 22.0  & 24.1  & 5.0\% & 0.58 \\
+($FR < 10\%$) & & Simulado  &21.95 &21.93 &23.44 &4.01\% &0.63 \\
+              & & Medido    & & & & & \\
+              & & \% Error  & & & & & \\
+\cmidrule(lr){2-8}
+% ---------------- PUENTE (ALTO RIZO) ----------------
+\textbf{Puente} & \multirow{4}{*}{$33\,\mu\mathrm{F}$} 
+& Teórico   & 19.3  & 18.5  & 24.1  & 33.1\% & 0.72 \\
+($FR > 30\%$) & & Simulado  &18.50 &18.09 &23.75 &23.23\% &0.65 \\
+              & & Medido    & & & & & \\
+              & & \% Error  & & & & & \\
+\bottomrule
+\end{tabular}
+\end{table*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%Resultados y analsis y conclusiones en p2.tex%%%%%%%%%

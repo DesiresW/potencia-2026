@@ -1,0 +1,17 @@
+% 8) Puente adaptado: dummies a tierra. SW_6 y SW_7 (ramas de diodos),
+%    SW_8 (en serie con la carga), SW_9 (selector de C)
+\begin{circuitikz}[voltage dir=RP]
+  % ramas de diodos: la corriente sube desde tierra por la dummy y entra al anodo
+  \dummyV{0,2.2}{2.2}{SW_6}{R_{D6}}
+  \draw (0,2.2) to[D*, l=$D_2$] (0,4.4) to[D*, l=$D_1$] (0,6.6);
+  \dummyV{4,2.2}{2.2}{SW_7}{R_{D7}}
+  \draw (4,2.2) to[D*, l=$D_4$] (4,4.4) to[D*, l=$D_3$] (4,6.6);
+  \draw (0,4.4) to[sV, l={$\etqFuente$}, *-*] (4,4.4);
+  % carga y su dummy
+  \draw (0,6.6) to[short,-*] (4,6.6) -- (8,6.6);
+  \carga{8,6.6}{4.4}{SW_9}
+  \dummyV{8,2.2}{2.2}{SW_8}{R_{D8}}
+  % tierra
+  \draw (0,0) -- (8,0);
+  \draw (2,0) node[ground]{};
+\end{circuitikz}

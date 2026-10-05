@@ -1,0 +1,8 @@
+% 6) Media onda adaptado: SW_1 (dummy entre R_L y tierra), SW_2 (selector de C)
+\begin{circuitikz}[voltage dir=RP]
+  \draw (0,0) to[sV, l={$\etqFuente$}] (0,5) to[D*, l=$D_1$] (3,5);
+  \carga{3,5}{2.8}{SW_2}
+  \dummyV{3,2.2}{2.2}{SW_1}{R_{D1}}
+  \draw (0,0) -- (3,0);
+  \draw (1.5,0) node[ground]{};
+\end{circuitikz}

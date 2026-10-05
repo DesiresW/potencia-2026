@@ -1,0 +1,50 @@
+% Prueba local: mismo preambulo del informe 2, solo con los archivos de circuitos.
+% (logo, bibliografia y sub_files de los companeros no estan en este equipo)
+    \documentclass[twocolumn]{IEEEtran}
+    \usepackage[margin=1cm]{geometry}
+    \usepackage[spanish,mexico]{babel}
+    \selectlanguage{spanish}
+    \usepackage[caption=false,font=footnotesize]{subfig}
+    \usepackage{multirow}
+    \usepackage{graphicx}
+    \usepackage{booktabs}
+    \usepackage{amsmath}
+    \usepackage[utf8]{inputenc}
+    \usepackage[T1]{fontenc}
+    \usepackage{amsmath}
+    \usepackage{enumerate}
+    \usepackage{amsfonts}
+    \usepackage{graphicx}
+    \usepackage[american]{circuitikz}
+    \usepackage{fancyhdr}
+    \pagestyle{fancy}
+    \setlength{\headheight}{14pt}
+    \setlength{\headsep}{8pt}
+    \usepackage{listings}
+    \usepackage{xcolor}
+    \usepackage{tikz}
+    \renewcommand{\familydefault}{\sfdefault}
+    \usepackage{amsfonts}
+    \usepackage[hidelinks]{hyperref}
+    \usepackage{float}
+    \usepackage{titlesec}
+    \setcounter{secnumdepth}{3}
+    \setcounter{tocdepth}{3}
+    \titleformat{\section}{\large\bfseries\filcenter}{\thesection}{1em}{}
+    \titleformat{\subsection}{\normalsize\bfseries\filcenter}{\thesubsection}{0.75em}{}
+    \titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{0.5em}{}
+    \titleformat{\paragraph}[runin]{\bfseries\itshape}{}{0pt}{}[:]
+    \usepackage{enumitem}
+    \setlength{\parskip}{0.2em}
+    \fancyhf{}
+    \lhead{\footnotesize \textbf{ Informe $\#2$:} Caracterización de rectificadores de potencia con diodos  }
+    \rhead{\footnotesize \today}
+    \setlength{\textfloatsep}{10pt}
+    \setlength{\floatsep}{8pt}
+    \setlength{\intextsep}{8pt}
+\begin{document}
+\section{Procedimiento (prueba)}
+\input{sub_files/circuitos/preambulo-circuitos}
+\input{sub_files/fig_genericos}
+\input{sub_files/metodologia_circuitos}
+\end{document}

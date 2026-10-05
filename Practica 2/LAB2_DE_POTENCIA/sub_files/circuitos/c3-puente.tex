@@ -1,0 +1,9 @@
+% 3) Puente rectificador (4 diodos)
+\begin{circuitikz}[voltage dir=RP]
+  \draw (0,0) to[D*, l=$D_2$] (0,2.2) to[D*, l=$D_1$] (0,4.4);
+  \draw (3,0) to[D*, l=$D_4$] (3,2.2) to[D*, l=$D_3$] (3,4.4);
+  \draw (0,2.2) to[sV, l={$\etqFuente$}, *-*] (3,2.2);
+  \draw (0,4.4) to[short,-*] (3,4.4) -- (5,4.4)
+        to[R, l_={$\etqCarga$}, v^={$\etqSalida$}] (5,0) to[short,-*] (3,0) -- (0,0);
+  \draw (4,0) node[ground]{};
+\end{circuitikz}

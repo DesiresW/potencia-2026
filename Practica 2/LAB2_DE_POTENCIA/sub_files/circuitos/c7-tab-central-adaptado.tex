@@ -1,0 +1,14 @@
+% 7) Tab central adaptado: SW_3 y SW_4 (dummies de cada rama), SW_5 (selector de C)
+\begin{circuitikz}[voltage dir=RP]
+  \trafoTab
+  \draw (2.6,4) to[D*, l=$D_1$] (4.4,4) -- (4.8,4);
+  \dummyH{4.8,4}{2.2}{SW_3}{R_{D3}}
+  \draw (7,4) -- (8,4) -- (8,0);
+  \draw (2.6,0) to[D*, l_=$D_2$] (4.4,0) -- (4.8,0);
+  \dummyH{4.8,0}{2.2}{SW_4}{R_{D4}}
+  \draw (7,0) -- (8,0);
+  \draw (2.6,2) to[short,*-] (3.4,2) node[ground]{};
+  \draw (8,2) to[short,*-] (9.6,2);
+  \carga{9.6,2}{3.5}{SW_5}
+  \draw (B) node[ground]{};
+\end{circuitikz}

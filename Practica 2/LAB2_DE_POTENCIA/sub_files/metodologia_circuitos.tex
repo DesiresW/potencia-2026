@@ -1,0 +1,101 @@
+% =====================================================================
+%  Metodologia: bloques modulares, circuitos adaptados, montaje y mediciones
+%  Uso en el main:  \input{sub_files/metodologia_circuitos}
+% =====================================================================
+\input{sub_files/circuitos/preambulo-circuitos}
+
+% ---- Bloques modulares -------------------------------------------------
+\begin{figure*}[!t]
+  \centering
+  \subfloat[Switch en paralelo con $R_{D}$.\label{fig:bloque_dummy}]{%
+    \resizebox{0.46\textwidth}{!}{\input{sub_files/circuitos/c4-bloque-dummy}}}
+  \hfill
+  \subfloat[Switch selector de capacitor en paralelo con $R_L$.\label{fig:bloque_carga}]{%
+    \resizebox{0.50\textwidth}{!}{\input{sub_files/circuitos/c5-bloque-carga}}}
+  \caption{Bloques modulares de los switches y su convención de estados.}
+  \label{fig:bloques}
+\end{figure*}
+
+% ---- Circuitos adaptados ----------------------------------------------
+\begin{figure*}[!t]
+  \centering
+  \subfloat[Media onda (SW$_1$, SW$_2$).\label{fig:adapt_media}]{%
+    \resizebox{0.32\textwidth}{!}{\input{sub_files/circuitos/c6-media-onda-adaptado}}}
+  \hfill
+  \subfloat[Onda completa con tab central (SW$_3$, SW$_4$, SW$_5$).\label{fig:adapt_tab}]{%
+    \resizebox{0.62\textwidth}{!}{\input{sub_files/circuitos/c7-tab-central-adaptado}}}
+  \\[2ex]
+  \subfloat[Puente rectificador (SW$_6$ a SW$_9$).\label{fig:adapt_puente}]{%
+    \resizebox{0.62\textwidth}{!}{\input{sub_files/circuitos/c8-puente-adaptado}}}
+  \caption{Circuitos adaptados con resistencias dummy y selector de capacitores.}
+  \label{fig:adaptados}
+\end{figure*}
+
+% ---- Montaje fisico (va a proposito despues de los esquematicos que lo explican) --
+\begin{figure*}[!t]
+  \centering
+  \includegraphics[width=0.9\textwidth]{sub_files/Imagenes/montaje.jpg}
+  \caption{Montaje físico de los tres rectificadores con los switches SW$_1$ a SW$_9$ y los puntos de medición.}
+  \label{fig:montaje}
+\end{figure*}
+
+% ---- Tablas de mediciones (C cerrado, A abierto, I izquierda, D derecha) --
+\begin{table}[!t]
+  \centering
+  \footnotesize
+  \caption{Mediciones del rectificador de media onda (C: cerrado, A: abierto, I: izquierda, D: derecha).}
+  \label{tab:med_media}
+  \begin{tabular}{llccl}
+    \toprule
+    \textbf{Carga} & \textbf{Medición} & \textbf{SW$_1$} & \textbf{SW$_2$} & \textbf{Archivo} \\ \midrule
+    \multirow{2}{*}{$R_L$}               & $R_L$    & C & A & 1110.csv \\
+                                         & $R_{D1}$ & A & A & 1120.csv \\ \midrule
+    \multirow{2}{*}{$R_L \parallel C_1$} & $R_L$    & C & I & 1210.csv \\
+                                         & $R_{D1}$ & A & I & 1220.csv \\ \midrule
+    \multirow{2}{*}{$R_L \parallel C_2$} & $R_L$    & C & D & 1310.csv \\
+                                         & $R_{D1}$ & A & D & 1320.csv \\ \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[!t]
+  \centering
+  \footnotesize
+  \caption{Mediciones del rectificador de onda completa con tab central (C: cerrado, A: abierto, I: izquierda, D: derecha).}
+  \label{tab:med_tab}
+  \begin{tabular}{llcccl}
+    \toprule
+    \textbf{Carga} & \textbf{Medición} & \textbf{SW$_3$} & \textbf{SW$_4$} & \textbf{SW$_5$} & \textbf{Archivo} \\ \midrule
+    \multirow{3}{*}{$R_L$}               & $R_L$    & C & C & A & 2110.csv \\
+                                         & $R_{D3}$ & A & A & A & 2120.csv \\
+                                         & $R_{D4}$ & A & A & A & 2130.csv \\ \midrule
+    \multirow{3}{*}{$R_L \parallel C_1$} & $R_L$    & C & C & I & 2210.csv \\
+                                         & $R_{D3}$ & A & A & I & 2220.csv \\
+                                         & $R_{D4}$ & A & A & I & 2230.csv \\ \midrule
+    \multirow{3}{*}{$R_L \parallel C_2$} & $R_L$    & C & C & D & 2310.csv \\
+                                         & $R_{D3}$ & A & A & D & 2320.csv \\
+                                         & $R_{D4}$ & A & A & D & 2330.csv \\ \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[!t]
+  \centering
+  \footnotesize
+  \caption{Mediciones del puente rectificador (C: cerrado, A: abierto, I: izquierda, D: derecha).}
+  \label{tab:med_puente}
+  \begin{tabular}{llccccl}
+    \toprule
+    \textbf{Carga} & \textbf{Medición} & \textbf{SW$_6$} & \textbf{SW$_7$} & \textbf{SW$_8$} & \textbf{SW$_9$} & \textbf{Archivo} \\ \midrule
+    \multirow{4}{*}{$R_L$}               & $R_L$    & C & C & C & A & 3110.csv \\
+                                         & $R_{D6}$ & A & A & C & A & 3120.csv \\
+                                         & $R_{D7}$ & A & A & C & A & 3130.csv \\
+                                         & $R_{D8}$ & C & C & A & A & 3140.csv \\ \midrule
+    \multirow{4}{*}{$R_L \parallel C_1$} & $R_L$    & C & C & C & I & 3210.csv \\
+                                         & $R_{D6}$ & A & A & C & I & 3220.csv \\
+                                         & $R_{D7}$ & A & A & C & I & 3230.csv \\
+                                         & $R_{D8}$ & C & C & A & I & 3240.csv \\ \midrule
+    \multirow{4}{*}{$R_L \parallel C_2$} & $R_L$    & C & C & C & D & 3310.csv \\
+                                         & $R_{D6}$ & A & A & C & D & 3320.csv \\
+                                         & $R_{D7}$ & A & A & C & D & 3330.csv \\
+                                         & $R_{D8}$ & C & C & A & D & 3340.csv \\ \bottomrule
+  \end{tabular}
+\end{table}

@@ -1,0 +1,7 @@
+% 1) Rectificador de media onda
+\begin{circuitikz}[voltage dir=RP]
+  \draw (0,0) to[sV, l={$\etqFuente$}] (0,3)
+        to[D*, l=$D_1$] (3.5,3)
+        to[R, l_={$\etqCarga$}, v^={$\etqSalida$}] (3.5,0) -- (0,0);
+  \draw (1.75,0) node[ground]{};
+\end{circuitikz}

@@ -1,0 +1,66 @@
+% !TEX outputDirectory = build
+\usepackage[nottoc]{tocbibind}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-tabla]{babel}
+\usepackage{pdflscape}
+\usepackage{hyperref}
+\usepackage{amsmath, amssymb, latexsym}
+\usepackage{cite}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[font = {small,sf}, labelfont = {bf}, labelsep = endash]{caption}
+\usepackage{sansmath}
+\usepackage{marginnote}
+\usepackage{xargs}
+\usepackage{geometry}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{siunitx}
+\usepackage[siunitx]{circuitikz}
+
+
+\decimalpoint
+
+\renewcommand{\familydefault}{cmss}
+\renewcommand{\seriesdefault}{m}
+\renewcommand{\shapedefault}{n}
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\refname}{Referencias y material adicional}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\contentsname}{Contenido}
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\newcommand{\tx}{\text}
+\newenvironment{shortitemize}{\begin{itemize}\setlength\itemsep{0em}}{\end{itemize}}
+\newenvironment{shortenumerate}{\begin{enumerate}\setlength\itemsep{0em}}{\end{enumerate}}
+

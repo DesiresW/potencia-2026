@@ -1,0 +1,9 @@
+% 2) Rectificador de onda completa con tab central (2 diodos)
+\begin{circuitikz}
+  \trafoTab
+  \draw (2.6,4) to[D*, l=$D_1$] (5,4) -- (6,4) -- (6,0);
+  \draw (2.6,0) to[D*, l_=$D_2$] (5,0) -- (6,0);
+  \draw (2.6,2) to[short,*-] (3.4,2) node[ground]{};
+  \draw (6,2) to[short,*-] (7.6,2)
+        to[R, l_={$\etqCarga$}, v^={$\etqSalida$}] (7.6,-0.5) node[ground]{};
+\end{circuitikz}

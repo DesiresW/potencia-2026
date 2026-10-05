@@ -1,0 +1,10 @@
+# Archivos generados por la compilacion de LaTeX
+**/build/
+*.aux
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.out
+*.bbl
+*.blg
+*.toc

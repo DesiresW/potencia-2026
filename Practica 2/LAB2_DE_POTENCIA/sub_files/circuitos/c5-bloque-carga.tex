@@ -1,0 +1,14 @@
+% 5) Bloque: carga R_L con switch selector de capacitor en paralelo
+\begin{circuitikz}[voltage dir=RP]
+  \draw (-1,2.8) to[short,o-] (0,2.8);
+  \carga{0,2.8}{2.8}{SW}
+  \draw (-1,0) to[short,o-] (B);
+  \node[right] at (5.4,1.4) {%
+    \begin{tabular}{ll}
+      \hline
+      \textbf{SW} & \textbf{Carga vista} \\ \hline
+      Abierto   & $\etqCarga$ \\
+      Izquierda & $\etqCarga \parallel \etqCuno$ \\
+      Derecha   & $\etqCarga \parallel \etqCdos$ \\ \hline
+    \end{tabular}};
+\end{circuitikz}
