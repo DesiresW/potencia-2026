@@ -4,6 +4,8 @@
 % =====================================================================
 \input{sub_files/circuitos/preambulo-circuitos}
 
+\subsection{Protocolo experimental}
+
 % ---- Bloques modulares -------------------------------------------------
 \begin{figure*}[!t]
   \centering
@@ -39,11 +41,12 @@
   \label{fig:montaje}
 \end{figure*}
 
+
 % ---- Tablas de mediciones (C cerrado, A abierto, I izquierda, D derecha) --
-\begin{table}[!t]
+\begin{table}[H]
   \centering
   \footnotesize
-  \caption{Mediciones del rectificador de media onda (C: cerrado, A: abierto, I: izquierda, D: derecha).}
+  \caption{Mediciones del rectificador de media onda, con $C_1 = 47\,\mu$F y $C_2 = 220\,\mu$F (C: cerrado, A: abierto, I: izquierda, D: derecha).}
   \label{tab:med_media}
   \begin{tabular}{llccl}
     \toprule
@@ -57,10 +60,10 @@
   \end{tabular}
 \end{table}
 
-\begin{table}[!t]
+\begin{table}[H]
   \centering
   \footnotesize
-  \caption{Mediciones del rectificador de onda completa con tab central (C: cerrado, A: abierto, I: izquierda, D: derecha).}
+  \caption{Mediciones del rectificador de onda completa con tab central, con $C_1 = 33\,\mu$F y $C_2 = 220\,\mu$F (C: cerrado, A: abierto, I: izquierda, D: derecha).}
   \label{tab:med_tab}
   \begin{tabular}{llcccl}
     \toprule
@@ -77,10 +80,10 @@
   \end{tabular}
 \end{table}
 
-\begin{table}[!t]
+\begin{table}[H]
   \centering
   \footnotesize
-  \caption{Mediciones del puente rectificador (C: cerrado, A: abierto, I: izquierda, D: derecha).}
+  \caption{Mediciones del puente rectificador, con $C_1 = 33\,\mu$F y $C_2 = 220\,\mu$F (C: cerrado, A: abierto, I: izquierda, D: derecha).}
   \label{tab:med_puente}
   \begin{tabular}{llccccl}
     \toprule
@@ -99,3 +102,11 @@
                                          & $R_{D8}$ & C & C & A & D & 3340.csv \\ \bottomrule
   \end{tabular}
 \end{table}
+
+% ---- Filtrado digital de las capturas -------------------------------------
+\begin{figure*}[!t]
+  \centering
+  \includegraphics[width=5in]{sub_files/Imagenes/filtro_antes_despues.pdf}
+  \caption{Capturas antes y después del filtro digital (mediana de 5 muestras y Butterworth pasa-bajos de orden 4, $f_c = 1$\,kHz).}
+  \label{fig:filtro}
+\end{figure*}
