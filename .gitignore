@@ -8,3 +8,10 @@
 *.bbl
 *.blg
 *.toc
+
+# Pruebas locales de maquetacion
+**/_prueba_col/
+
+# Python
+__pycache__/
+*.pyc

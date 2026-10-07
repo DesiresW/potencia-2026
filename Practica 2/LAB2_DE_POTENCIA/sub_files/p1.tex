@@ -267,19 +267,19 @@ En esta sección se presentan de forma consolidada las magnitudes teóricas calc
 & 0.240% <-- S LTspice
 & 0.668% <-- PF LTspice
 \\
-& Medido    & % <-- Dato del osciloscopio en el lab
-& 
-& 
-& 
-& 
-& 
+& Medido    & 7.06 % <-- Dato del osciloscopio en el lab (preliminar, filtrado)
+& 4.41
+& 14.34
+& 0.226
+& 0.344
+& 0.657
 \\
-& \% Error  & % <-- % Error
-& 
-& 
-& 
-& 
-& 
+& \% Error  & 17.2 % <-- % Error
+& 15.0
+& 19.2
+& 37.1
+& 39.5
+& 1.7
 \\
 \midrule
 % ---------------- TAP CENTRAL ----------------
@@ -292,19 +292,19 @@ En esta sección se presentan de forma consolidada las magnitudes teóricas calc
 & 0.498
 & 0.662
 \\
-& Medido    & % <-- Lab
-& 
-& 
-& 
-& 
-& 
+& Medido    & 9.94 % <-- Lab (preliminar, filtrado)
+& 8.78
+& 14.38
+& 0.449 % <-- P = <vo^2>/R_L, R_L = 220 ohm
+& 0.679 % <-- S = 2 Vdev_rms Idev_rms, Idev_rms = ID_rms / sqrt(2)
+& 0.662
 \\
-& \% Error  & 
-& 
-& 
-& 
-& 
-& 
+& \% Error  & 16.8
+& 14.6
+& 19.5
+& 36.6
+& 37.7
+& 0.7
 \\
 \midrule
 % ---------------- PUENTE DE DIODOS ----------------
@@ -329,9 +329,10 @@ En esta sección se presentan de forma consolidada las magnitudes teóricas calc
 & 
 & 
 & 
-& 
+&
 \\
 \bottomrule
+\multicolumn{8}{l}{\footnotesize Valores medidos: $P$, $S$ y $PF$ calculados a partir de $v_o$ con $R_L = 220\,\Omega$.}
 \end{tabular}
 \end{table*}
 
@@ -351,29 +352,29 @@ En esta sección se presentan de forma consolidada las magnitudes teóricas calc
 \textbf{Media onda} & \multirow{4}{*}{$220\,\mu\mathrm{F}$} 
 & Teórico   & 10.0  & 9.9   & 12.0  & 9.9\% & 0.35 \\
 ($FR < 10\%$) & & Simulado  &10.34 &10.3 &11.82 &9.29\% &0.38 \\
-              & & Medido    & & & & & \\
-              & & \% Error  & & & & & \\
+              & & Medido    & 12.51 & 12.46 & 14.36 & 8.88\% & 0.43 \\
+              & & \% Error  & 25.1 & 25.8 & 19.7 & 10.3 & 23.0 \\
 \cmidrule(lr){2-8}
 % ---------------- MEDIA ONDA (ALTO RIZO) ----------------
 \textbf{Media onda} & \multirow{4}{*}{$47\,\mu\mathrm{F}$} 
 & Teórico   & 6.9   & 6.4   & 12.0  & 46.5\% & 0.52 \\
 ($FR > 30\%$) & & Simulado  &7.77 &7.30 &11.90 &37.12\% &0.45 \\
-              & & Medido    & & & & & \\
-              & & \% Error  & & & & & \\
+              & & Medido    & 9.58 & 9.01 & 14.44 & 36.26\% & 0.42 \\
+              & & \% Error  & 38.8 & 40.7 & 20.3 & 22.0 & 18.6 \\
 \midrule
 % ---------------- TAP CENTRAL (BAJO RIZO) ----------------
 \textbf{Tap central} & \multirow{4}{*}{$220\,\mu\mathrm{F}$} 
 & Teórico   & 11.0  & 11.0  & 12.0  & 5.0\% & 0.40 \\
 ($FR < 10\%$) & & Simulado  &11.1 &11.09 &11.83 &3.99\% &0.29 \\
-              & & Medido    & & & & & \\
-              & & \% Error  & & & & & \\
+              & & Medido    & 13.22 & 13.21 & 14.15 & 4.08\% & 0.42 \\
+              & & \% Error  & 20.2 & 20.1 & 17.9 & 18.5 & 3.8 \\
 \cmidrule(lr){2-8}
 % ---------------- TAP CENTRAL (ALTO RIZO) ----------------
 \textbf{Tap central} & \multirow{4}{*}{$33\,\mu\mathrm{F}$} 
 & Teórico   & 9.6   & 9.2   & 12.0  & 33.1\% & 0.55 \\
 ($FR > 30\%$) & & Simulado  &9.28 &9.07 &11.90 &23.22\% &0.33 \\
-              & & Medido    & & & & & \\
-              & & \% Error  & & & & & \\
+              & & Medido    & 11.40 & 11.18 & 14.32 & 19.89\% & 0.49 \\
+              & & \% Error  & 18.7 & 21.5 & 19.3 & 39.9 & 11.2 \\
 \midrule
 % ---------------- PUENTE (BAJO RIZO) ----------------
 \textbf{Puente} & \multirow{4}{*}{$220\,\mu\mathrm{F}$} 
@@ -389,10 +390,25 @@ En esta sección se presentan de forma consolidada las magnitudes teóricas calc
               & & Medido    & & & & & \\
               & & \% Error  & & & & & \\
 \bottomrule
+\multicolumn{8}{l}{\footnotesize $PF$ medido con $i_D = v_o/R_L + C\,dv_o/dt$ y $R_L = 220\,\Omega$.}
 \end{tabular}
 \end{table*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% ---- Graficas de resultados (exportadas al ancho de columna, sin escalar) ----
+\begin{figure}[!htb]
+  \centering
+  \includegraphics{sub_files/Imagenes/resultados_media_onda.pdf}
+  \caption{Rectificador de media onda: $v_s$ y $v_o$ con $R_L$, $C_1 = 47\,\mu$F y $C_2 = 220\,\mu$F. El eje derecho expresa $i = v_o/R_L$ ($R_L = 220\,\Omega$).}
+  \label{fig:res_media_onda}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics{sub_files/Imagenes/resultados_tab_central.pdf}
+  \caption{Rectificador con tab central ($C_1 = 33\,\mu$F, $C_2 = 220\,\mu$F): semidevanados y salida (arriba) y corriente por rama $i_D = v_o/R_L + C\,dv_o/dt$ (abajo).}
+  \label{fig:res_tab_central}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%Resultados y analsis y conclusiones en p2.tex%%%%%%%%%

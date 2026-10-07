@@ -104,9 +104,17 @@
 \end{table}
 
 % ---- Filtrado digital de las capturas -------------------------------------
-\begin{figure*}[!t]
+\begin{figure}[!htb]
   \centering
-  \includegraphics[width=5in]{sub_files/Imagenes/filtro_antes_despues.pdf}
+  \includegraphics{sub_files/Imagenes/filtro_antes_despues.pdf}   % exportada al ancho de columna
   \caption{Capturas antes y después del filtro digital (mediana de 5 muestras y Butterworth pasa-bajos de orden 4, $f_c = 1$\,kHz).}
   \label{fig:filtro}
-\end{figure*}
+\end{figure}
+
+% ---- Marcadores sobre las capturas filtradas ------------------------------
+\begin{figure}[!htb]
+  \centering
+  \includegraphics{sub_files/Imagenes/marcadores_mediciones.pdf}   % exportada al ancho de columna
+  \caption{Intervalo de conducción del diodo (arriba) y niveles de salida usados en las tablas de resultados (abajo).}
+  \label{fig:marcadores}
+\end{figure}
