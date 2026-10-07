@@ -24,3 +24,8 @@ El archivo `XYZ0.csv` corresponde a la medición **X.Y.Z** (el `0` final se igno
 - **Z**: punto medido — 1 sobre $R_L$; 2 en adelante sobre cada R dummy de 1 Ω.
 
 Estados de los switches: C cerrado, A abierto, I izquierda, D derecha. El detalle está en las tablas de mediciones del informe.
+
+> **Corrección (2026-10-06):** los archivos `2210.csv` y `2310.csv` se guardaron con los nombres intercambiados en el laboratorio y ya se corrigieron en este repo. Evidencia: el nivel DC de cada uno coincidía con el de las capturas de la otra configuración (2230 frente a 2320/2330), y el rizado no correspondía a su capacitor (con los nombres corregidos, 2.2.1 da FR ≈ 19.9 % con $C_1$ y 2.3.1 da FR ≈ 4.1 % con $C_2$, en línea con la simulación). Las copias originales fuera del repo (`D:\`) siguen con los nombres viejos.
+
+### Filtrado digital (`Mediciones/filtrado/`)
+Las capturas tienen ruido de alta frecuencia. `filtro.py` aplica una mediana de 5 muestras (quita espigas) y un Butterworth pasa-bajos de orden 4 con $f_c = 1$ kHz aplicado ida y vuelta (sin desfase). Las señales filtradas están en `Mediciones/filtradas/`, `valores_preliminares.py` calcula DC, RMS, pico y FR, y `comparar.py` las compara con los valores teóricos y simulados.
